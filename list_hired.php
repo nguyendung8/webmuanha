@@ -75,6 +75,14 @@
          <img width="250px" height="207px" src="uploaded_img/<?php echo $fetch_room['image']; ?>" alt="">
          <p> Tổng tiền : <span><?php echo number_format($fetch_room['price'],0,',','.' ); ?> đ </span> </p>
          <p> Phương thức thanh toán: <span><?php echo $fetch_pays['payment'] ?></span> </p>
+         <p> Ngày thuê phòng:
+            <span>
+               <?php
+                  $date_object = DateTime::createFromFormat('Y-m-d', $fetch_pays['date']);
+                  echo $date_object->format('d-m-Y');
+               ?>
+            </span> 
+         </p>
          <p style="margin-bottom: 10px;"> Trạng thái  : 
             <span style="color:<?php if($fetch_pays['is_confirmed'] == 1){ echo 'green'; }else if($fetch_pays['is_confirmed'] == '0'){ echo 'red'; }else{ echo 'orange'; } ?>;">
                <?php if ($fetch_pays['is_confirmed'] == 1) {
