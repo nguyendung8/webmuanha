@@ -10,21 +10,21 @@
       header('location:login.php');
    }
 
-   if(isset($_POST['add_category'])){//Thêm loại sách vào thể loại từ submit có name='add_category'
+   if(isset($_POST['add_category'])){//Thêm loại sách vào loại phòng từ submit có name='add_category'
 
       $name = mysqli_real_escape_string($conn, $_POST['cate_name']);
 
       $select_category_name = mysqli_query($conn, "SELECT cate_name FROM `categories` WHERE cate_name = '$name'") or die('query failed');//truy vấn để kiểm tra loại sách đã tồn tại chưa
 
       if(mysqli_num_rows($select_category_name) > 0){// tồn tại rồi thì thông báo
-         $message[] = 'Thể loại đã tồn tại.';
+         $message[] = 'loại phòng đã tồn tại.';
       }else{//chưa tồn tại thì thêm mới
          $add_category_query = mysqli_query($conn, "INSERT INTO `categories`(cate_name) VALUES('$name')") or die('query failed');
 
          if($add_category_query){
-         $message[] = 'Thêm thể loại thành công!';
+         $message[] = 'Thêm loại phòng thành công!';
          }else{
-            $message[] = 'Không thể thêm thể loại này!';
+            $message[] = 'Không thể thêm loại phòng này!';
          }
       }
    }
@@ -34,14 +34,14 @@
       $delete_category_query = mysqli_query($conn, "DELETE FROM `categories` WHERE id = '$delete_id'") or die('query failed');
 
       if($delete_category_query){
-         $message[] = 'Xóa thể loại thành công!';
+         $message[] = 'Xóa loại phòng thành công!';
          }else{
-            $message[] = 'Không thể xóa thể loại này!';
+            $message[] = 'Không thể xóa loại phòng này!';
          }
       header('location:admin_category.php');
    }
 
-   if(isset($_POST['update_category'])){//Cập nhật loại sách vào thể loại từ submit có name='update_category'
+   if(isset($_POST['update_category'])){//Cập nhật loại sách vào loại phòng từ submit có name='update_category'
 
       $update_p_id = $_POST['update_p_id'];
       $update_name = $_POST['update_name'];
@@ -60,7 +60,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Thể loại phim</title>
+   <title>Loại phòng</title>
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
    <link rel="stylesheet" href="css/admin_style.css">
@@ -72,10 +72,10 @@
 
 <section class="add-products">
 
-   <h1 class="title">Thể loại phim</h1>
+   <h1 class="title">Loại phòng</h1>
    <form action="" method="post" enctype="multipart/form-data">
-      <h3>Thêm Thể loại</h3>
-      <input type="text" name="cate_name" class="box" placeholder="Nhập tên thể loại" required>
+      <h3>Thêm loại phòng</h3>
+      <input type="text" name="cate_name" class="box" placeholder="Nhập tên loại phòng" required>
       <input type="submit" value="Thêm" name="add_category" class="btn">
    </form>
 
@@ -93,12 +93,12 @@
       <div style="height: -webkit-fill-available;" class="box">
          <div class="name"><?php echo $fetch_categorys['cate_name']; ?></div>
          <a href="admin_category.php?update=<?php echo $fetch_categorys['id']; ?>" class="option-btn">Cập nhật</a>
-         <a href="admin_category.php?delete=<?php echo $fetch_categorys['id']; ?>" class="delete-btn" onclick="return confirm('Xóa thể loại này?');">Xóa</a>
+         <a href="admin_category.php?delete=<?php echo $fetch_categorys['id']; ?>" class="delete-btn" onclick="return confirm('Xóa loại phòng này?');">Xóa</a>
       </div>
       <?php
          }
       }else{
-         echo '<p class="empty">Không có thể loại phim nào được thêm!</p>';  
+         echo '<p class="empty">Không có loại phòng nào được thêm!</p>';  
       }
       ?>
    </div>

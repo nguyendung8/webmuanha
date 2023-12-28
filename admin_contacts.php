@@ -12,7 +12,7 @@
 
    if(isset($_GET['delete'])){//xóa tin nhắn từ onclick <a></a> href='delete'
       $delete_id = $_GET['delete'];
-      mysqli_query($conn, "DELETE FROM `message` WHERE id = '$delete_id'") or die('query failed');
+      mysqli_query($conn, "DELETE FROM `messages` WHERE id = '$delete_id'") or die('query failed');
       header('location:admin_contacts.php');
    }
 
@@ -40,12 +40,12 @@
 
    <div class="box-container">
    <?php
-      $select_message = mysqli_query($conn, "SELECT * FROM `message`") or die('query failed');
+      $select_message = mysqli_query($conn, "SELECT * FROM `messages`") or die('query failed');
       if(mysqli_num_rows($select_message) > 0){
          while($fetch_message = mysqli_fetch_assoc($select_message)){
       
    ?>
-   <div class="box">
+   <div style="height: -webkit-fill-available;" class="box">
       <p> Id người dùng : <span><?php echo $fetch_message['user_id']; ?></span> </p>
       <p> Tên : <span><?php echo $fetch_message['name']; ?></span> </p>
       <p> Số điện thoại : <span><?php echo $fetch_message['number']; ?></span> </p>

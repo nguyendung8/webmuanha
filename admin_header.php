@@ -18,9 +18,9 @@
       <a href="admin_page.php" class="logo">Quản lý</a>
 
       <nav class="navbar">
-         <a href="admin_products.php">Phim</a>
-         <a href="admin_category.php">Thể loại</a>
-         <a href="admin_tickets.php">Phiếu đặt vé</a>
+         <a href="admin_rooms.php">Phòng</a>
+         <a href="admin_category.php">Loại phòng</a>
+         <a href="admin_tickets.php">Phiếu đặt phòng</a>
          <a href="admin_users.php">Người dùng</a></a>
          <a href="admin_contacts.php">Tin nhắn</a>
       </nav>

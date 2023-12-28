@@ -20,7 +20,7 @@
             $_SESSION['admin_name'] = $row['name'];
             $_SESSION['admin_email'] = $row['email'];
             $_SESSION['admin_id'] = $row['id'];
-            header('location:admin_products.php');
+            header('location:admin_rooms.php');
 
          }elseif($row['user_type'] == 'user'){
 
