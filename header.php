@@ -44,7 +44,7 @@
             <a href="home.php">Trang chủ</a>
             <a href="about.php">Thông tin</a>
             <a href="contact.php">Liên hệ</a>
-            <a href="tickets.php">Phòng đã thuê</a>
+            <a href="list_hired.php">Phòng đã thuê</a>
          </nav>
 
          <div class="icons">

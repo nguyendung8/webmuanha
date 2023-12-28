@@ -103,7 +103,7 @@
       }
       .star_icon {
          color: #ffb700;
-         font-size: 16px !important;
+         font-size: 18px !important;
       }
    </style>
 </head>
@@ -153,7 +153,7 @@
       } else {
          $cate_id = 10;
       }
-         $select_products = mysqli_query($conn, "SELECT r.* FROM rooms r JOIN categories c ON r.cate_id = c.id  WHERE cate_id = $cate_id") or die('query failed');
+         $select_products = mysqli_query($conn, "SELECT r.* FROM rooms r JOIN categories c ON r.cate_id = c.id  WHERE cate_id = $cate_id AND is_hired = 0") or die('query failed');
          if(mysqli_num_rows($select_products) > 0){
             while($fetch_products = mysqli_fetch_assoc($select_products)){
       ?>
@@ -180,12 +180,12 @@
                <i class="fa fa-star star_icon" aria-hidden="true"></i>
                <i class="fa fa-star star_icon" aria-hidden="true"></i>
                <i class="fa fa-star star_icon" aria-hidden="true"></i>
-               <?php } ?>
+            <?php } ?>
             </div>
             <div class="name"><?php echo $fetch_products['name']; ?></div>
             <div class="book-action">
                <a href="room_detail.php?room_id=<?php echo $fetch_products['id'] ?>" class="view-book" >Xem thông tin phòng</a>
-               <a href="book_ticket.php?room_id=<?php echo $fetch_products['id'] ?>" class="borrow_book" >Thuê phòng</a>
+               <a href="hire_room.php?room_id=<?php echo $fetch_products['id'] ?>" class="borrow_book" >Thuê phòng</a>
             </div>
          </form>
       <?php

@@ -11,11 +11,33 @@
    }
    $room_id = $_GET['room_id'];
 
+   // Lấy ra thông tin sách
    $sql = "SELECT * FROM rooms WHERE id = $room_id";
    $result = $conn->query($sql);
-   $roomItem = $result->fetch_assoc()
+   $roomItem = $result->fetch_assoc();
 
+   // Lấy ra thông tin student
+   $sql1 = "SELECT * FROM students WHERE id = $user_id";
+   $result1 = $conn->query($sql1);
+   $user = $result1->fetch_assoc();
 
+   // Lúc click vào nút mượn
+   if(isset($_POST['submit'])) {
+      $roomId = $room_id;
+      $studentId = $user_id;
+      $payment = $_POST['method'];
+      $date = date('Y-m-d');
+      if($roomItem['is_hired'] == 1) {
+         $message[] = 'Phòng đã có người thuê!';
+      } else {
+         $hire = mysqli_query($conn, "INSERT INTO `pays`(room_id, student_id, payment, date) VALUES('$roomId', '$studentId', '$payment','$date')") or die('query failed');
+         if($hire) {
+            $message[] = 'Thuê phòng thành công!';
+         } else {
+            $message[] = 'Thuê phòng không thành công!';
+         }
+      }
+   }
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +46,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Xem thông tin phòng</title>
+   <title>Thuê phòng</title>
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
    <link rel="stylesheet" href="css/style.css">
@@ -33,7 +55,7 @@
          padding: 15px;
       }
       .modal{
-         width: 500px;
+         width: 650px;
          margin: auto;
          border: 2px solid #eee;
          padding-bottom: 27px;
@@ -44,35 +66,67 @@
          background-color:#fff;
          text-align: center;
       }
-      .bookdetail-title {
+      .roomdetail-title {
          font-size: 21px;
          padding-top: 10px;
          color: #9e1ed4;
       }
-      .bookdetail-img {
+      .roomdetail-img {
          margin-top: 18px;
-         width: 300px;
-         height: 230px;
+         width: 369px;
+         height: 226px;
       }
-      .bookdetail-author {
+      .roomdetail-author {
          margin-top: 19px;
          font-size: 20px;
       }
-      .bookdetail-desc {
-         margin: 20px 10px;
+      .roomdetail-desc {
+         margin-top: 20px;
          font-size: 16px;
       }
-      .borrow_book:hover { 
-         opacity: 0.9;
+      .form-item {
+         display: flex;
+         align-items: center;
+         justify-content: space-evenly;
+         padding: 0 15px;
       }
-      .borrow_book {
-         padding: 5px 25px;
-         background-image: linear-gradient(to right, #ff9800, #F7695D);
+      .form-item span {
+         font-size: 18px;
+         flex: 0.5;
+      }
+      .form-item input {
+         border: 1px solid #eee !important;
+         padding: 7px 18px;
+         margin-top: 4px;
+         flex: 1;
+         font-size: 15px;
+      }
+      .book_ticket_input {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+      }
+      .borrow-btn {
+         margin-top: 21px;
+         padding: 8px;
          border-radius: 4px;
-         cursor: pointer;
-         font-size: 20px;
+         background: #1ed224;
          color: #fff;
-         font-weight: 700;
+         font-size: 20px;
+         cursor: pointer;
+      }
+      .borrow-btn:hover {
+         opacity: 0.8;
+      }
+      .form_input {
+         margin-top: 13px;
+         font-size: 20px;
+      }
+      .select_method {
+         border: 1px solid #ddd;
+         padding: 5px 13px;
+         font-size: 19px;
+         cursor: pointer;
       }
       .star_icon {
          color: #ffb700;
@@ -86,13 +140,13 @@
 <section class="view-book">
    <?php if ($roomItem) : ?>
          <!-- Modal View Detail Book -->
-      <div class="modal">
+      <form class="modal" method="post">
          <div class="modal-container">
-            <h3 class="bookdetail-title"><?php echo($roomItem['name']) ?></h3>
+            <h3 class="roomdetail-title"><?php echo($roomItem['name']) ?></h3>
             <div>
-               <img class="bookdetail-img" src="uploaded_img/<?php echo $roomItem['image']; ?>" alt="">
+               <img class="roomdetail-img" src="uploaded_img/<?php echo $roomItem['image']; ?>" alt="">
             </div>
-            <p class="bookdetail-author">
+            <p class="roomdetail-author">
                Đánh giá: 
                <?php if($roomItem['rate'] == 1) {  ?>
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
@@ -116,23 +170,27 @@
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
                <?php } ?>
             </p>
-            <p class="bookdetail-author">
-               Địa điểm: 
-               <?php echo ($roomItem['location']) ?>
-            </p>
-            <p class="bookdetail-author">
+            <p class="roomdetail-author">
                Giá phòng: 
                <?php echo number_format($roomItem['price'],0,',','.' ); ?> đ/ tháng
             </p>
-            <p style="margin-bottom: 15px;" class="bookdetail-author">
-               Mô tả: 
-               <?php echo ($roomItem['description']) ?>
+            <p class="roomdetail-author">
+               Địa điểm: 
+               <?php echo ($roomItem['location']) ?>
             </p>
-            <a href="hire_room.php?room_id=<?php echo $roomItem['id'] ?>" class="borrow_book" >Thuê phòng</a>
+               <div class="form_input">
+                  <span for="">Phương thức thanh toán: </span>
+                  <select class="select_method" name="method">
+                     <option value="Tiền mặt khi nhận hàng">Tiền mặt khi nhận hàng</option>
+                     <option value="Thẻ ngân hàng">Thẻ ngân hàng</option>
+                     <option value="Paypal">Paypal</option>
+                  </select>
+               </div>
+            <input class="borrow-btn" name="submit" type="submit" value="Thuê phòng">
          </div>
-      </div>
+      </form>
    <?php else : ?>
-      <p style="font-size: 20px; text-align: center;">Không xem được chi tiết phòng này</p>
+      <p style="font-size: 20px; text-align: center;">Không thuê được phòng này</p>
    <?php endif; ?>
 
 </section>
