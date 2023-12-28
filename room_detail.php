@@ -9,11 +9,11 @@
    if(!isset($user_id)){// session không tồn tại => quay lại trang đăng nhập
       header('location:login.php');
    }
-   $film_id = $_GET['film_id'];
+   $room_id = $_GET['room_id'];
 
-   $sql = "SELECT * FROM films WHERE id = $film_id";
+   $sql = "SELECT * FROM rooms WHERE id = $room_id";
    $result = $conn->query($sql);
-   $filmItem = $result->fetch_assoc()
+   $roomItem = $result->fetch_assoc()
 
 
 ?>
@@ -24,7 +24,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Xem thông tin phim</title>
+   <title>Xem thông tin phòng</title>
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
    <link rel="stylesheet" href="css/style.css">
@@ -51,7 +51,8 @@
       }
       .bookdetail-img {
          margin-top: 18px;
-         width: 230px;
+         width: 300px;
+         height: 230px;
       }
       .bookdetail-author {
          margin-top: 19px;
@@ -80,42 +81,31 @@
 <?php include 'header.php'; ?>
 
 <section class="view-book">
-   <?php if ($filmItem) : ?>
+   <?php if ($roomItem) : ?>
          <!-- Modal View Detail Book -->
       <div class="modal">
          <div class="modal-container">
-            <h3 class="bookdetail-title"><?php echo($filmItem['name']) ?></h3>
+            <h3 class="bookdetail-title"><?php echo($roomItem['name']) ?></h3>
             <div>
-               <img class="bookdetail-img" src="uploaded_img/<?php echo $filmItem['image']; ?>" alt="">
+               <img class="bookdetail-img" src="uploaded_img/<?php echo $roomItem['image']; ?>" alt="">
             </div>
             <p class="bookdetail-author">
-               Xuất xứ: 
-               <?php echo ($filmItem['origin']) ?>
+               Địa điểm: 
+               <?php echo ($roomItem['location']) ?>
             </p>
             <p class="bookdetail-author">
-               Thời lượng: 
-               <?php echo ($filmItem['show_time']) ?>
+               Giá phòng: 
+               <?php  echo number_format($roomItem['price'],0,',','.' ); ?> đ/ tháng
             </p>
-            <p class="bookdetail-author">
-               Đạo diễn: 
-               <?php echo ($filmItem['director']) ?>
+            <p style="margin-bottom: 15px;" class="bookdetail-author">
+               Mô tả: 
+               <?php echo ($roomItem['description']) ?>
             </p>
-            <p class="bookdetail-author">
-               Diễn viên: 
-               <?php echo ($filmItem['performer']) ?>
-            </p>
-            <p class="bookdetail-author">
-               Số lượng vé còn lại: 
-               <?php echo ($filmItem['seat_quantity']) ?> vé
-            </p>
-            <p style="color: red;" class="bookdetail-desc">
-               <?php echo($filmItem['age_limit'])  ?>
-            </p>
-            <a href="book_ticket.php?film_id=<?php echo $filmItem['id'] ?>" class="borrow_book" >Đặt vé</a>
+            <a href="book_ticket.php?room_id=<?php echo $roomItem['id'] ?>" class="borrow_book" >Thuê phòng</a>
          </div>
       </div>
    <?php else : ?>
-      <p style="font-size: 20px; text-align: center;">Không xem được chi tiết sách này</p>
+      <p style="font-size: 20px; text-align: center;">Không xem được chi tiết phòng này</p>
    <?php endif; ?>
 
 </section>

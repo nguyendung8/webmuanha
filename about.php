@@ -31,13 +31,13 @@
    <div class="flex">
 
       <div class="image">
-         <img height="375px" style="border-radius: 3px;" src="images/about_img.jpg" alt="">
+         <img height="390px" style="border-radius: 3px;" src="images/about-img.jpg" alt="">
       </div>
 
       <div class="content">
-         <h3>Tại sao chúng ta nên xem phim?</h3>
-         <p>Xem phim giúp bạn trở nên tốt đẹp hơn.</p>
-         <p>Đó có thể là những bộ phim gắn với quãng thời gain bạn muốn nhớ đến, và những cảm xúc tích cực ở thời điểm đó. Nó giúp bạn làm sống lại những cảm xúc đẹp, và là điểm chốn lý tưởng cho một thực tế mỏi mệt căng thẳng trước mắt.</p>
+         <h3>Tại sao lại có ?</h3>
+         <p>Thuận tiện và Nhanh chóng.</p>
+         <p> Người thuê có thể đọc đánh giá và nhận xét từ người khác về bất động sản hoặc người cho thuê trên các trang web này, giúp họ đưa ra quyết định thông tin và chân thực.</p>
          <a href="contact.php" class="btn">Liên hệ</a>
       </div>
 

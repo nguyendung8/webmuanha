@@ -47,22 +47,23 @@
       $delete_image_query = mysqli_query($conn, "SELECT image FROM `rooms` WHERE id = '$delete_id'") or die('query failed');
       $fetch_delete_image = mysqli_fetch_assoc($delete_image_query);
       unlink('uploaded_img/'.$fetch_delete_image['image']);//xóa file ảnh của sách cần xóa
-      mysqli_query($conn, "DELETE FROM `books` WHERE id = '$delete_id'") or die('query failed');
-      header('location:admin_products.php');
+      mysqli_query($conn, "DELETE FROM `rooms` WHERE id = '$delete_id'") or die('query failed');
+
+      $message[] = 'Xóa phòng thành công!';
    }
 
    if(isset($_POST['update_product'])){//cập nhật sách từ form submit name='update_product'
 
       $update_p_id = $_POST['update_p_id'];
       $update_name = $_POST['update_name'];
-      $update_director = $_POST['update_director'];
-      $update_category = $_POST['update_category'];
-      $update_quantity = $_POST['update_quantity'];
       $update_price = $_POST['update_price'];
+      $update_location = $_POST['update_location'];
+      $update_category = $_POST['update_category'];
 
-      mysqli_query($conn, "UPDATE `rooms` SET name = '$update_name', director = '$update_director', cate_id='$update_category', seat_quantity='$update_quantity', price='$update_price' WHERE id = '$update_p_id'") or die('query failed');
+      mysqli_query($conn, "UPDATE `rooms` SET name = '$update_name', location = '$update_location', cate_id='$update_category', price='$update_price' WHERE id = '$update_p_id'") or die('query failed');
 
-      header('location:admin_products.php');
+      // $message[] = 'Cập nhật phòng thành công!';
+      header('location:admin_rooms.php');
 
    }
 
@@ -126,8 +127,8 @@
                <div style="height: -webkit-fill-available;" class="box">
                   <img width="180px" height="207px" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
                   <div class="name"><?php echo $fetch_products['name']; ?></div>
-                  <a href="admin_products.php?update=<?php echo $fetch_products['id']; ?>" class="option-btn">Cập nhật</a>
-                  <a href="admin_products.php?delete=<?php echo $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('Xóa sách này?');">Xóa</a>
+                  <a href="admin_rooms.php?update=<?php echo $fetch_products['id']; ?>" class="option-btn">Cập nhật</a>
+                  <a href="admin_rooms.php?delete=<?php echo $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('Xóa phòng này?');">Xóa</a>
                </div>
       <?php
             }
@@ -152,8 +153,6 @@
                   <input type="hidden" name="update_p_id" value="<?php echo $fetch_update['id']; ?>">
                   <img src="uploaded_img/<?php echo $fetch_update['image']; ?>" alt="">
                   <input type="text" name="update_name" value="<?php echo $fetch_update['name']; ?>" class="box" required placeholder="Tên truyện">
-                  <input type="text" name="update_director" value="<?php echo $fetch_update['director']; ?>" class="box" required placeholder="Đạo diễn">
-                  <input type="text" name="update_price" value="<?php echo $fetch_update['price']; ?>" class="box" required placeholder="Xuất xứ">
                   <select name="update_category" class="box">
                      <?php
                         $cate_id = $fetch_update['cate_id'];
@@ -174,7 +173,9 @@
                         }
                      ?>
                   </select>
-                  <input type="number" name="update_quantity" value="<?php echo $fetch_update['seat_quantity']; ?>" min="0" class="box" required placeholder="Số lượng ghế">
+                  <input type="number" name="update_price" value="<?php echo $fetch_update['price']; ?>" class="box" required placeholder="Giá">
+                  <input type="hidden" name="update_rate" value="<?php echo $fetch_update['rate']; ?>" class="box" required placeholder="Đánh giá">
+                  <input type="text" name="update_location" value="<?php echo $fetch_update['location']; ?>" class="box" required placeholder="Địa chỉ">
                   <input type="submit" value="update" name="update_product" class="btn">
                   <input type="reset" value="cancel" id="close-update" class="option-btn">
                </form>
@@ -189,6 +190,11 @@
 </section>
 
 <script src="js/admin_script.js"></script>
-
+<script>
+   document.querySelector('#close-update').onclick = () =>{
+   document.querySelector('.edit-product-form').style.display = 'none';
+   window.location.href = 'admin_rooms.php';
+}
+</script>
 </body>
 </html>

@@ -11,7 +11,7 @@
       <div class="box">
          <a href="login.php">Đăng nhập</a>
          <a href="register.php">Đăng ký</a>
-         <a href="tickets.php">Đã đặt</a>
+         <a href="tickets.php">Phòng đã thuê</a>
       </div>
 
       <div class="box">
