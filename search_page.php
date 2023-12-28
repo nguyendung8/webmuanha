@@ -44,7 +44,7 @@
 
 <section class="search-form">
    <form action="" method="post">
-      <input type="text" name="search" placeholder="Tìm phim..." class="box"  value=" <?php if(isset($_POST['submit'])) echo($_POST['search'])?>">
+      <input type="text" name="search" placeholder="Tìm phòng..." class="box"  value=" <?php if(isset($_POST['submit'])) echo($_POST['search'])?>">
       <input type="submit" name="submit" value="Tìm kiếm" class="btn">
    </form>
 </section>
