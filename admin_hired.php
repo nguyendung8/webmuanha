@@ -97,7 +97,7 @@
                         <?php if ($fetch_pays['is_confirmed'] == 1) {
                               echo 'Đã xác nhận';
                            } else {
-                              echo 'Chờ xử lý';
+                              echo 'Chờ xác nhận';
                            }
                         ?>
                      </span> 
@@ -106,7 +106,7 @@
                      <input type="hidden" name="room_id" value="<?php echo $fetch_pays['room_id'] ?>">
                      <input type="hidden" name="hire_room_id" value="<?php echo $fetch_pays['id'] ?>">
                      <?php if($fetch_pays['is_confirmed'] == 0) { ?>
-                        <input style="background: red" class="confirm-btn" type="submit" value="Xác nhận" name="confirmed">
+                        <input style="background: #1f7bc4" class="confirm-btn" type="submit" value="Xác nhận" name="confirmed">
                      <?php } ?>
                   </form>
                </div>

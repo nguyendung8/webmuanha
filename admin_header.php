@@ -15,7 +15,7 @@
 
    <div class="flex">
 
-      <a href="admin_page.php" class="logo">Quản lý</a>
+      <a href="admin_rooms.php" class="logo">Quản lý</a>
 
       <nav class="navbar">
          <a href="admin_rooms.php">Phòng</a>
