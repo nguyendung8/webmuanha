@@ -35,7 +35,7 @@
       </div>
 
       <div class="content">
-         <h3>Tại sao lại có ?</h3>
+         <h3>Tại sao lại có Phongtro87 ?</h3>
          <p>Thuận tiện và Nhanh chóng.</p>
          <p> Người thuê có thể đọc đánh giá và nhận xét từ người khác về bất động sản hoặc người cho thuê trên các trang web này, giúp họ đưa ra quyết định thông tin và chân thực.</p>
          <a href="contact.php" class="btn">Liên hệ</a>
@@ -47,7 +47,7 @@
 
 <section class="authors">
 
-   <h1 class="title">Thành viên của Cinema</h1>
+   <h1 class="title">Thành viên của Phongtro87</h1>
 
    <div class="box-container">
 
@@ -57,7 +57,7 @@
             <a href="#" class="fab fa-facebook-f"></a>
             <a href="#" class="fab fa-instagram"></a>
          </div>
-         <h3>Công tử phố núi</h3>
+         <h3>Nguyễn Ngọc Khang</h3>
       </div>
    </div>
 

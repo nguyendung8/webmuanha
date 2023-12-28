@@ -10,7 +10,18 @@
       }
    }
 ?>
-
+<style>
+   .changepw-btn {
+      border-radius: 4px;
+      font-size: 20px;
+      background: blue;
+      color: #fff;
+      padding: 7px 12px;
+   }
+   .changepw-btn:hover {
+      opacity: 0.7;
+   }
+</style>
 <header class="header">
 
    <div class="header-1">
@@ -24,9 +35,9 @@
    </div>
 
    <div class="header-2">
-      <div class="flex">
+      <div style="padding: 10px;" class="flex">
          <a href="home.php" class="logo">
-            <img width="155px" src="./images/logo.png" alt="">
+            <img width="200px" src="./images/logo_room.png" alt="">
          </a>
 
          <nav class="navbar">
@@ -42,10 +53,10 @@
             <div id="user-btn" class="fas fa-user"></div>
          </div>
 
-         <div class="user-box">
-            <p>Tên người dùng : <span><?php echo $_SESSION['user_name']; ?></span></p>
-            <p>Email : <span><?php echo $_SESSION['user_email']; ?></span></p>
-            <a href="logout.php" class="delete-btn">Đăng xuất</a>
+         <div style="z-index: 100;" class="user-box">
+            <p>Tên : <span><?php echo $_SESSION['user_name']; ?></span></p>
+            <a href="change_password.php" class="changepw-btn">Đổi mật khẩu</a>
+            <a style="margin-top: 13px;" href="logout.php" class="delete-btn">Đăng xuất</a>
          </div>
       </div>
    </div>

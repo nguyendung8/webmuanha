@@ -55,7 +55,7 @@
       <?php
          if(isset($_POST['submit'])){
             $search_item = trim($_POST['search']);
-            $select_products = mysqli_query($conn, "SELECT * FROM `films` WHERE name LIKE '%{$search_item}%'") or die('query failed');
+            $select_products = mysqli_query($conn, "SELECT * FROM `rooms` WHERE name LIKE '%{$search_item}%'") or die('query failed');
             if(mysqli_num_rows($select_products) > 0){
                while($fetch_products = mysqli_fetch_assoc($select_products)){
       ?>
@@ -63,8 +63,8 @@
                      <img width="180px" height="207px" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
                      <div class="name"><?php echo $fetch_products['name']; ?></div>
                      <div class="book-action">
-                        <a href="film_detail.php?film_id=<?php echo $fetch_products['id'] ?>" class="view-book" >Xem thông tin phim</a>
-                        <a href="book_ticket.php?film_id=<?php echo $fetch_products['id'] ?>" class="borrow_book" >Đặt vé</a>
+                        <a href="room_detail.php?room_id=<?php echo $fetch_products['id'] ?>" class="view-book" >Xem thông tin phòng</a>
+                        <a href="book_ticket.php?room_id=<?php echo $fetch_products['id'] ?>" class="borrow_book" >Thuê phòng</a>
                      </div>
                   </form>
       <?php

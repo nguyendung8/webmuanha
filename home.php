@@ -124,35 +124,7 @@
          <div class="slide fade">
             <img src="./images/slide3.jpg" alt="slide 3">
          </div>
-         </div>
-         </div>
-         <div class="slide fade">
-            <img src="./images/slider5.jpg" alt="slide 3">
-         </div>
-         <div class="slide fade">
-            <img src="./images/slider6.jpg" alt="slide 3">
-         </div>
-         <div class="slide fade">
-            <img src="./images/slider7.jpg" alt="slide 3">
-         </div>
       </div>
-      <!-- <h3>Mỗi ngày một quyển sách.</h3>
-      <p>Những quyển sách đều mang trong mình những bài học ý nghĩa, những trải nghiệm đáng giá.</p>
-      <a href="about.php" class="white-btn">Khám phá thêm</a> -->
-      </div>
-         <div class="slide fade">
-            <img src="./images/slider5.jpg" alt="slide 3">
-         </div>
-         <div class="slide fade">
-            <img src="./images/slider6.jpg" alt="slide 3">
-         </div>
-         <div class="slide fade">
-            <img src="./images/slider7.jpg" alt="slide 3">
-         </div>
-      </div>
-      <!-- <h3>Mỗi ngày một quyển sách.</h3>
-      <p>Những quyển sách đều mang trong mình những bài học ý nghĩa, những trải nghiệm đáng giá.</p>
-      <a href="about.php" class="white-btn">Khám phá thêm</a> -->
    </div>
 
 </section>

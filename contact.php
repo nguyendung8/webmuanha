@@ -17,12 +17,12 @@
       $number = $_POST['number'];
       $msg = mysqli_real_escape_string($conn, $_POST['message']);
 
-      $select_message = mysqli_query($conn, "SELECT * FROM `message` WHERE name = '$name' AND email = '$email' AND number = '$number' AND message = '$msg'") or die('query failed');
+      $select_message = mysqli_query($conn, "SELECT * FROM `messages` WHERE name = '$name' AND email = '$email' AND number = '$number' AND message = '$msg'") or die('query failed');
 
       if(mysqli_num_rows($select_message) > 0){
          $message[] = 'Tin nhắn đã được gửi trước đó!';
       }else{
-         mysqli_query($conn, "INSERT INTO `message`(user_id, name, email, number, message) VALUES('$user_id', '$name', '$email', '$number', '$msg')") or die('query failed');
+         mysqli_query($conn, "INSERT INTO `messages`(student_id, name, email, number, message) VALUES('$user_id', '$name', '$email', '$number', '$msg')") or die('query failed');
          $message[] = 'Tin nhắn đã được gửi thành công!';
       }
 
