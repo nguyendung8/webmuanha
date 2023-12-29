@@ -34,6 +34,7 @@
          border-radius: 4px;
          padding: 12px;
          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+         width: 350px;
       }
       .borrow-box p {
          padding: 4px 0;
@@ -73,6 +74,7 @@
             $fetch_room = mysqli_fetch_assoc($room_query)
          ?>
          <img width="250px" height="207px" src="uploaded_img/<?php echo $fetch_room['image']; ?>" alt="">
+         <p> Địa chỉ : <span><?php echo $fetch_room['location']; ?> </span> </p>
          <p> Tổng tiền : <span><?php echo number_format($fetch_room['price'],0,',','.' ); ?> đ </span> </p>
          <p> Phương thức thanh toán: <span><?php echo $fetch_pays['payment'] ?></span> </p>
          <p> Ngày thuê phòng:
