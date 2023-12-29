@@ -108,7 +108,7 @@
       <input type="text" name="location" class="box" placeholder="Địa chỉ" required>
       <input type="number" name="price" class="box" placeholder="Giá phòng / tháng" required>
       <textarea class="box" name="description" rows="6" placeholder="Mô tả"></textarea>
-      <input type="number" name="rate" class="box" placeholder="Đánh giá sao" required>
+      <input type="number" min=1 max=5 name="rate" class="box" placeholder="Đánh giá sao" required>
       <input type="file" name="image" accept="image/jpg, image/jpeg, image/png, image/webp" class="box" required>
       <input type="submit" value="Thêm" name="add_room" class="btn">
    </form>
@@ -174,7 +174,7 @@
                      ?>
                   </select>
                   <input type="number" name="update_price" value="<?php echo $fetch_update['price']; ?>" class="box" required placeholder="Giá">
-                  <input type="hidden" name="update_rate" value="<?php echo $fetch_update['rate']; ?>" class="box" required placeholder="Đánh giá">
+                  <input type="hidden" name="update_rate" min=1 max=5 value="<?php echo $fetch_update['rate']; ?>" class="box" required placeholder="Đánh giá">
                   <input type="text" name="update_location" value="<?php echo $fetch_update['location']; ?>" class="box" required placeholder="Địa chỉ">
                   <input type="submit" value="update" name="update_product" class="btn">
                   <input type="reset" value="cancel" id="close-update" class="option-btn">
