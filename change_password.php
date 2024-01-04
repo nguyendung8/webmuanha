@@ -13,7 +13,7 @@
         $new_password =  mysqli_real_escape_string($conn, md5($_POST['new_password']));
 
         // Kiểm tra mật khẩu cũ
-        $checkOldPasswordQuery = "SELECT password FROM students WHERE id = $user_id";
+        $checkOldPasswordQuery = "SELECT password FROM users WHERE id = $user_id";
         $result = $conn->query($checkOldPasswordQuery);
 
         if ($result->num_rows > 0) {
@@ -23,7 +23,7 @@
             // Kiểm tra mật khẩu cũ có khớp không
             if ($hashedPassword === $old_password) {
                 // Mật khẩu cũ đúng, cập nhật mật khẩu mới
-                $updatePasswordQuery = "UPDATE students SET password = '$new_password' WHERE id = $user_id";
+                $updatePasswordQuery = "UPDATE users SET password = '$new_password' WHERE id = $user_id";
                 
                 if ($conn->query($updatePasswordQuery) === TRUE) {
                     $message[] = 'Đổi mật khẩu thành công';

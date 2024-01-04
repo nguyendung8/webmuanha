@@ -7,7 +7,7 @@
         $email =  mysqli_real_escape_string($conn, $_POST['email']);
         $new_password =  mysqli_real_escape_string($conn, md5($_POST['new_password']));
 
-        $checkEmail = "SELECT * from students where email = '".$email."'";
+        $checkEmail = "SELECT * from users where email = '".$email."'";
         $result = $conn->query($checkEmail);
 
         if ($result->num_rows > 0) {
@@ -18,7 +18,7 @@
             // Kiểm tra email có tồn tại trong hệ thống không
             if ($email === $email_origin) {
                 // Emaill có tồn tại , cập nhật mật khẩu mới
-                $updatePasswordQuery = "UPDATE students SET password = '$new_password' WHERE id = $user_id";
+                $updatePasswordQuery = "UPDATE users SET password = '$new_password' WHERE id = $user_id";
                 
                 if ($conn->query($updatePasswordQuery) === TRUE) {
                     $message[] = 'Cập nhật mật khẩu thành công';
