@@ -17,7 +17,7 @@
    $roomItem = $result->fetch_assoc();
 
    // Lấy ra thông tin student
-   $sql1 = "SELECT * FROM students WHERE id = $user_id";
+   $sql1 = "SELECT * FROM users WHERE id = $user_id";
    $result1 = $conn->query($sql1);
    $user = $result1->fetch_assoc();
 

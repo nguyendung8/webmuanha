@@ -8,12 +8,11 @@
       $email = mysqli_real_escape_string($conn, $_POST['email']);
       $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
 
-      $select_users = mysqli_query($conn, "SELECT * FROM `students` WHERE email = '$email' AND password = '$pass'") or die('query failed');
+      $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
 
       if(mysqli_num_rows($select_users) > 0){//kiểm tra tài khoản có tồn tại không
 
          $row = mysqli_fetch_assoc($select_users);
-         $user_id = $row['id'];
          //kiểm tra quyền của tài khoản và đưa đến trang tương ứng
          if($row['user_type'] == 'admin'){
 
@@ -24,12 +23,9 @@
 
          }elseif($row['user_type'] == 'user'){
 
-            $_SESSION['user_id'] = $row['id'];
             $_SESSION['user_name'] = $row['name'];
             $_SESSION['user_email'] = $row['email'];
-            $_SESSION['user_phone'] = $row['phone_number'];
-            $_SESSION['user_address'] = $row['address'];
-            $_SESSION['user_school'] = $row['school'];
+            $_SESSION['user_id'] = $row['id'];
             header('location:home.php');
 
          }
