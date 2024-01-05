@@ -67,7 +67,7 @@
             while($fetch_pays = mysqli_fetch_assoc($order_query)){
       ?>
       <div class="borrow-box">
-         <p> ID người dùng : <span><?php echo $fetch_pays['user_id']; ?></span> </p>
+         <!-- <p> ID người dùng : <span><?php echo $fetch_pays['user_id']; ?></span> </p> -->
          <p> ID nhà : <span><?php echo $fetch_pays['house_id']; ?></span> </p>
          <?php
             $house_id = $fetch_pays['house_id'];
@@ -76,6 +76,7 @@
          ?>
          <img width="250px" height="207px" src="uploaded_img/<?php echo $fetch_room['image']; ?>" alt="">
          <p> Địa chỉ : <span><?php echo $fetch_room['location']; ?> </span> </p>
+         <p> Diện tích : <span><?php echo $fetch_room['area']; ?> </span> </p>
          <p> Tổng tiền : <span><?php echo $fetch_room['price']; ?>  </span> </p>
          <p> Phương thức thanh toán: <span><?php echo $fetch_pays['payment'] ?></span> </p>
          <p> Ngày đặt mua:

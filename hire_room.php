@@ -28,7 +28,7 @@
       $payment = $_POST['method'];
       $date = date('Y-m-d');
       if($houseItem['is_hired'] == 1) {
-         $message[] = 'Nhà đã có người thuê!';
+         $message[] = 'Nhà đã có người mua!';
       } else {
          $hire = mysqli_query($conn, "INSERT INTO `pays`(house_id, user_id, payment, date) VALUES('$roomId', '$userId', '$payment','$date')") or die('query failed');
          if($hire) {
@@ -55,6 +55,7 @@
          padding: 15px;
       }
       .modal{
+         padding: 0 15px;
          width: 650px;
          margin: auto;
          border: 2px solid #eee;

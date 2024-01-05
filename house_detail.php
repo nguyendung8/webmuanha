@@ -33,7 +33,8 @@
          padding: 15px;
       }
       .modal{
-         width: 500px;
+         padding: 0 15px;
+         width: 650px;
          margin: auto;
          border: 2px solid #eee;
          padding-bottom: 27px;

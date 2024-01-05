@@ -156,7 +156,7 @@
       } else {
          $cate_id = 16;
       }
-         $select_products = mysqli_query($conn, "SELECT r.* FROM houses r JOIN categories c ON r.cate_id = c.id  WHERE cate_id = $cate_id AND is_hired = 0") or die('query failed');
+         $select_products = mysqli_query($conn, "SELECT r.* FROM houses r JOIN categories c ON r.cate_id = c.id  WHERE cate_id = $cate_id") or die('query failed');
          if(mysqli_num_rows($select_products) > 0){
             while($fetch_houses = mysqli_fetch_assoc($select_products)){
       ?>

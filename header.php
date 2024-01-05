@@ -37,7 +37,7 @@
    <div class="header-2">
       <div style="padding: 10px;" class="flex">
          <a href="home.php" class="logo">
-            <img width="150px" src="./images/logo.png" alt="">
+            <img width="170px" src="./images/logo_main.png" alt="">
          </a>
 
          <nav class="navbar">

@@ -44,7 +44,7 @@
 
 <section class="search-form">
    <form action="" method="post">
-      <input type="text" name="search" placeholder="Tìm phòng..." class="box"  value=" <?php if(isset($_POST['submit'])) echo($_POST['search'])?>">
+      <input type="text" name="search" placeholder="Nhập địa chỉ..." class="box"  value=" <?php if(isset($_POST['submit'])) echo($_POST['search'])?>">
       <input type="submit" name="submit" value="Tìm kiếm" class="btn">
    </form>
 </section>
@@ -55,7 +55,7 @@
       <?php
          if(isset($_POST['submit'])){
             $search_item = trim($_POST['search']);
-            $select_products = mysqli_query($conn, "SELECT * FROM `rooms` WHERE name LIKE '%{$search_item}%' AND is_hired = 0") or die('query failed');
+            $select_products = mysqli_query($conn, "SELECT * FROM `houses` WHERE location LIKE '%{$search_item}%' AND is_hired = 0") or die('query failed');
             if(mysqli_num_rows($select_products) > 0){
                while($fetch_products = mysqli_fetch_assoc($select_products)){
       ?>
@@ -63,8 +63,8 @@
                      <img width="180px" height="207px" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
                      <div class="name"><?php echo $fetch_products['name']; ?></div>
                      <div class="book-action">
-                        <a href="house_detail.php?house_id=<?php echo $fetch_products['id'] ?>" class="view-book" >Xem thông tin phòng</a>
-                        <a href="hire_room.php?house_id=<?php echo $fetch_products['id'] ?>" class="borrow_book" >Thuê phòng</a>
+                        <a href="house_detail.php?house_id=<?php echo $fetch_products['id'] ?>" class="view-book" >Xem thông tin nhà</a>
+                        <a href="hire_room.php?house_id=<?php echo $fetch_products['id'] ?>" class="borrow_book" >Mua nhà</a>
                      </div>
                   </form>
       <?php
@@ -73,7 +73,7 @@
                echo '<p class="empty">Không tìm thấy kết quả phù hợp với yêu cầu tìm kiếm của bạn!</p>';
             }
          }else{
-            echo '<p class="empty"">Hãy tìm kiếm gì đó!</p>';
+            echo '<p class="empty"">Nhập địa chỉ cần tìm!</p>';
          }
       ?>
    </div>
