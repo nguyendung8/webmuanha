@@ -88,7 +88,7 @@
       }
       .home-banner {
          min-height: 70vh;
-         background:linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.1)), url(./images/home_bg.png) no-repeat;
+         background:linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.1)), url(./images/home_background.png) no-repeat;
          background-size: cover;
          background-position: center;
          display: flex;
@@ -116,13 +116,16 @@
    <div class="content">
       <div class="slideshow-container">
          <div class="slide fade">
-            <img src="./images/slide1.webp" alt="slide 1">
+            <img src="./images/slider1.jpg" alt="slide 1">
          </div>
          <div class="slide fade">
-            <img src="./images/slide2.jpg" alt="slide 2">
+            <img src="./images/slider2.jfif" alt="slide 2">
          </div>
          <div class="slide fade">
-            <img src="./images/slide3.jpg" alt="slide 3">
+            <img src="./images/slider3.jfif" alt="slide 3">
+         </div>
+         <div class="slide fade">
+            <img src="./images/slider3.jfif" alt="slide 3">
          </div>
       </div>
    </div>
@@ -131,7 +134,7 @@
 
 <section class="products">
 
-   <h1 class="title">Danh sách phòng cho thuê</h1>
+   <h1 class="title">Danh sách nhà cho thuê</h1>
    <div class="list-cate">
       <?php  
          $select_categoriess = mysqli_query($conn, "SELECT * FROM `categories`") or die('query failed');
@@ -151,25 +154,25 @@
       if(isset($_GET['cate_id'])) {
          $cate_id = $_GET['cate_id'];
       } else {
-         $cate_id = 10;
+         $cate_id = 16;
       }
-         $select_products = mysqli_query($conn, "SELECT r.* FROM rooms r JOIN categories c ON r.cate_id = c.id  WHERE cate_id = $cate_id AND is_hired = 0") or die('query failed');
+         $select_products = mysqli_query($conn, "SELECT r.* FROM houses r JOIN categories c ON r.cate_id = c.id  WHERE cate_id = $cate_id AND is_hired = 0") or die('query failed');
          if(mysqli_num_rows($select_products) > 0){
-            while($fetch_products = mysqli_fetch_assoc($select_products)){
+            while($fetch_houses = mysqli_fetch_assoc($select_products)){
       ?>
          <form style="height: -webkit-fill-available;" action="" method="post" class="box">
-            <img width="230px" height="200px" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
+            <img width="230px" height="200px" src="uploaded_img/<?php echo $fetch_houses['image']; ?>" alt="">
             <div class="list_rate">
-            <?php if($fetch_products['rate'] == 1) {  ?>
+            <?php if($fetch_houses['rate'] == 1) {  ?>
                <i class="fa fa-star star_icon" aria-hidden="true"></i>
-            <?php } else if($fetch_products['rate'] == 2) { ?>
-               <i class="fa fa-star star_icon" aria-hidden="true"></i>
-               <i class="fa fa-star star_icon" aria-hidden="true"></i>
-            <?php } else if($fetch_products['rate'] == 3) {  ?>
+            <?php } else if($fetch_houses['rate'] == 2) { ?>
                <i class="fa fa-star star_icon" aria-hidden="true"></i>
                <i class="fa fa-star star_icon" aria-hidden="true"></i>
+            <?php } else if($fetch_houses['rate'] == 3) {  ?>
                <i class="fa fa-star star_icon" aria-hidden="true"></i>
-            <?php } else if($fetch_products['rate'] == 4) {  ?>
+               <i class="fa fa-star star_icon" aria-hidden="true"></i>
+               <i class="fa fa-star star_icon" aria-hidden="true"></i>
+            <?php } else if($fetch_houses['rate'] == 4) {  ?>
                <i class="fa fa-star star_icon" aria-hidden="true"></i>
                <i class="fa fa-star star_icon" aria-hidden="true"></i>
                <i class="fa fa-star star_icon" aria-hidden="true"></i>
@@ -181,17 +184,22 @@
                <i class="fa fa-star star_icon" aria-hidden="true"></i>
                <i class="fa fa-star star_icon" aria-hidden="true"></i>
             <?php } ?>
+         </div>
+            <div class="name">
+               <?php  if($fetch_houses['rate'] == 5) { ?>
+                  <img src="./images/vip.gif" alt="" class="vip-icon">
+               <?php } ?>
+               <?php echo $fetch_houses['name']; ?>
             </div>
-            <div class="name"><?php echo $fetch_products['name']; ?></div>
             <div class="book-action">
-               <a href="room_detail.php?room_id=<?php echo $fetch_products['id'] ?>" class="view-book" >Xem thông tin phòng</a>
-               <a href="hire_room.php?room_id=<?php echo $fetch_products['id'] ?>" class="borrow_book" >Thuê phòng</a>
+               <a href="house_detail.php?house_id=<?php echo $fetch_houses['id'] ?>" class="view-book" >Xem thông tin nhà</a>
+               <a href="hire_room.php?house_id=<?php echo $fetch_houses['id'] ?>" class="borrow_book" >Mua nhà</a>
             </div>
          </form>
       <?php
             }
          }else{
-            echo '<p class="empty">Chưa có film để đặt!</p>';
+            echo '<p class="empty">Chưa có nhà nào để mua!</p>';
          }
       ?>
    </div>
@@ -202,7 +210,7 @@
 
    <div class="content">
       <h3>Bạn có thắc mắc?</h3>
-      <p>Hãy để lại những điều bạn còn thắc mắc, băn khoăn hay muốn chia sẻ thêm về những loại phòng cho chúng mình tại đây để chúng mình có thể giải đáp giúp bạn</p>
+      <p>Hãy để lại những điều bạn còn thắc mắc, băn khoăn hay muốn chia sẻ thêm về những loại nhà cho chúng mình tại đây để chúng mình có thể giải đáp giúp bạn</p>
       <a href="contact.php" class="white-btn">Liên hệ</a>
    </div>
 

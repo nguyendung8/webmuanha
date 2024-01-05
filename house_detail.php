@@ -9,11 +9,11 @@
    if(!isset($user_id)){// session không tồn tại => quay lại trang đăng nhập
       header('location:login.php');
    }
-   $room_id = $_GET['room_id'];
+   $house_id = $_GET['house_id'];
 
-   $sql = "SELECT * FROM rooms WHERE id = $room_id";
+   $sql = "SELECT * FROM houses WHERE id = $house_id";
    $result = $conn->query($sql);
-   $roomItem = $result->fetch_assoc()
+   $houseItem = $result->fetch_assoc()
 
 
 ?>
@@ -24,7 +24,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Xem thông tin phòng</title>
+   <title>Xem thông tin nhà</title>
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
    <link rel="stylesheet" href="css/style.css">
@@ -84,26 +84,26 @@
 <?php include 'header.php'; ?>
 
 <section class="view-book">
-   <?php if ($roomItem) : ?>
+   <?php if ($houseItem) : ?>
          <!-- Modal View Detail Book -->
       <div class="modal">
          <div class="modal-container">
-            <h3 class="bookdetail-title"><?php echo($roomItem['name']) ?></h3>
+            <h3 class="bookdetail-title"><?php echo($houseItem['name']) ?></h3>
             <div>
-               <img class="bookdetail-img" src="uploaded_img/<?php echo $roomItem['image']; ?>" alt="">
+               <img class="bookdetail-img" src="uploaded_img/<?php echo $houseItem['image']; ?>" alt="">
             </div>
             <p class="bookdetail-author">
                Đánh giá: 
-               <?php if($roomItem['rate'] == 1) {  ?>
+               <?php if($houseItem['rate'] == 1) {  ?>
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
-               <?php } else if($roomItem['rate'] == 2) { ?>
-                  <i class="fa fa-star star_icon" aria-hidden="true"></i>
-                  <i class="fa fa-star star_icon" aria-hidden="true"></i>
-               <?php } else if($roomItem['rate'] == 3) {  ?>
+               <?php } else if($houseItem['rate'] == 2) { ?>
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
+               <?php } else if($houseItem['rate'] == 3) {  ?>
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
-               <?php } else if($roomItem['rate'] == 4) {  ?>
+                  <i class="fa fa-star star_icon" aria-hidden="true"></i>
+                  <i class="fa fa-star star_icon" aria-hidden="true"></i>
+               <?php } else if($houseItem['rate'] == 4) {  ?>
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
@@ -118,21 +118,29 @@
             </p>
             <p class="bookdetail-author">
                Địa điểm: 
-               <?php echo ($roomItem['location']) ?>
+               <?php echo ($houseItem['location']) ?>
             </p>
             <p class="bookdetail-author">
-               Giá phòng: 
-               <?php echo number_format($roomItem['price'],0,',','.' ); ?> đ/ tháng
+               Diện tích:
+               <span style="color: red;">
+                  <?php echo ($houseItem['area']) ?>
+               </span> 
+            </p>
+            <p class="bookdetail-author">
+               Giá nhà:
+               <span style="color: red;">
+                  <?php echo $houseItem['price']; ?>
+               </span> 
             </p>
             <p style="margin-bottom: 15px;" class="bookdetail-author">
                Mô tả: 
-               <?php echo ($roomItem['description']) ?>
+               <?php echo ($houseItem['description']) ?>
             </p>
-            <a href="hire_room.php?room_id=<?php echo $roomItem['id'] ?>" class="borrow_book" >Thuê phòng</a>
+            <a href="hire_room.php?house_id=<?php echo $houseItem['id'] ?>" class="borrow_book" >Mua nhà</a>
          </div>
       </div>
    <?php else : ?>
-      <p style="font-size: 20px; text-align: center;">Không xem được chi tiết phòng này</p>
+      <p style="font-size: 20px; text-align: center;">Không xem được chi tiết nhà này</p>
    <?php endif; ?>
 
 </section>

@@ -63,8 +63,8 @@
                      <img width="180px" height="207px" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
                      <div class="name"><?php echo $fetch_products['name']; ?></div>
                      <div class="book-action">
-                        <a href="room_detail.php?room_id=<?php echo $fetch_products['id'] ?>" class="view-book" >Xem thông tin phòng</a>
-                        <a href="hire_room.php?room_id=<?php echo $fetch_products['id'] ?>" class="borrow_book" >Thuê phòng</a>
+                        <a href="house_detail.php?house_id=<?php echo $fetch_products['id'] ?>" class="view-book" >Xem thông tin phòng</a>
+                        <a href="hire_room.php?house_id=<?php echo $fetch_products['id'] ?>" class="borrow_book" >Thuê phòng</a>
                      </div>
                   </form>
       <?php

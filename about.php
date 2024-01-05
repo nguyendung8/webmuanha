@@ -35,9 +35,9 @@
       </div>
 
       <div class="content">
-         <h3>Tại sao lại có Phongtro87 ?</h3>
+         <h3>Tại sao lại có BĐS Quỳnh Quỳnh?</h3>
          <p>Thuận tiện và Nhanh chóng.</p>
-         <p> Người thuê có thể đọc đánh giá và nhận xét từ người khác về bất động sản hoặc người cho thuê trên các trang web này, giúp họ đưa ra quyết định thông tin và chân thực.</p>
+         <p> Người mua có thể đọc đánh giá và nhận xét từ người khác về bất động sản hoặc người cho thuê trên các trang web này, giúp họ đưa ra quyết định thông tin và chân thực.</p>
          <a href="contact.php" class="btn">Liên hệ</a>
       </div>
 
@@ -47,17 +47,17 @@
 
 <section class="authors">
 
-   <h1 class="title">Thành viên của Phongtro87</h1>
+   <h1 class="title">Thành viên của BĐS Quỳnh Quỳnh</h1>
 
    <div class="box-container">
 
       <div class="box">
-         <img src="images/author-1.jpg" alt="">
+         <img src="images/info_img.jfif" alt="">
          <div class="share">
             <a href="#" class="fab fa-facebook-f"></a>
             <a href="#" class="fab fa-instagram"></a>
          </div>
-         <h3>Nguyễn Ngọc Khang</h3>
+         <h3>Như Quỳnh</h3>
       </div>
    </div>
 

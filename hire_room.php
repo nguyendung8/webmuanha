@@ -9,32 +9,32 @@
    if(!isset($user_id)){// session không tồn tại => quay lại trang đăng nhập
       header('location:login.php');
    }
-   $room_id = $_GET['room_id'];
+   $house_id = $_GET['house_id'];
 
    // Lấy ra thông tin sách
-   $sql = "SELECT * FROM rooms WHERE id = $room_id";
+   $sql = "SELECT * FROM houses WHERE id = $house_id";
    $result = $conn->query($sql);
-   $roomItem = $result->fetch_assoc();
+   $houseItem = $result->fetch_assoc();
 
-   // Lấy ra thông tin student
+   // Lấy ra thông tin user
    $sql1 = "SELECT * FROM users WHERE id = $user_id";
    $result1 = $conn->query($sql1);
    $user = $result1->fetch_assoc();
 
    // Lúc click vào nút mượn
    if(isset($_POST['submit'])) {
-      $roomId = $room_id;
-      $studentId = $user_id;
+      $roomId = $house_id;
+      $userId = $user_id;
       $payment = $_POST['method'];
       $date = date('Y-m-d');
-      if($roomItem['is_hired'] == 1) {
-         $message[] = 'Phòng đã có người thuê!';
+      if($houseItem['is_hired'] == 1) {
+         $message[] = 'Nhà đã có người thuê!';
       } else {
-         $hire = mysqli_query($conn, "INSERT INTO `pays`(room_id, student_id, payment, date) VALUES('$roomId', '$studentId', '$payment','$date')") or die('query failed');
+         $hire = mysqli_query($conn, "INSERT INTO `pays`(house_id, user_id, payment, date) VALUES('$roomId', '$userId', '$payment','$date')") or die('query failed');
          if($hire) {
-            $message[] = 'Thuê phòng thành công!';
+            $message[] = 'Đặt mua nhà thành công!';
          } else {
-            $message[] = 'Thuê phòng không thành công!';
+            $message[] = 'Đặt mua nhà không thành công!';
          }
       }
    }
@@ -46,7 +46,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Thuê phòng</title>
+   <title>Đặt mua nhà</title>
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
    <link rel="stylesheet" href="css/style.css">
@@ -138,26 +138,26 @@
 <?php include 'header.php'; ?>
 
 <section class="view-book">
-   <?php if ($roomItem) : ?>
+   <?php if ($houseItem) : ?>
          <!-- Modal View Detail Book -->
       <form class="modal" method="post">
          <div class="modal-container">
-            <h3 class="roomdetail-title"><?php echo($roomItem['name']) ?></h3>
+            <h3 class="roomdetail-title"><?php echo($houseItem['name']) ?></h3>
             <div>
-               <img class="roomdetail-img" src="uploaded_img/<?php echo $roomItem['image']; ?>" alt="">
+               <img class="roomdetail-img" src="uploaded_img/<?php echo $houseItem['image']; ?>" alt="">
             </div>
             <p class="roomdetail-author">
                Đánh giá: 
-               <?php if($roomItem['rate'] == 1) {  ?>
+               <?php if($houseItem['rate'] == 1) {  ?>
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
-               <?php } else if($roomItem['rate'] == 2) { ?>
-                  <i class="fa fa-star star_icon" aria-hidden="true"></i>
-                  <i class="fa fa-star star_icon" aria-hidden="true"></i>
-               <?php } else if($roomItem['rate'] == 3) {  ?>
+               <?php } else if($houseItem['rate'] == 2) { ?>
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
+               <?php } else if($houseItem['rate'] == 3) {  ?>
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
-               <?php } else if($roomItem['rate'] == 4) {  ?>
+                  <i class="fa fa-star star_icon" aria-hidden="true"></i>
+                  <i class="fa fa-star star_icon" aria-hidden="true"></i>
+               <?php } else if($houseItem['rate'] == 4) {  ?>
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
                   <i class="fa fa-star star_icon" aria-hidden="true"></i>
@@ -171,12 +171,24 @@
                <?php } ?>
             </p>
             <p class="roomdetail-author">
-               Giá phòng: 
-               <?php echo number_format($roomItem['price'],0,',','.' ); ?> đ/ tháng
+               Địa điểm: 
+               <?php echo ($houseItem['location']) ?>
             </p>
             <p class="roomdetail-author">
-               Địa điểm: 
-               <?php echo ($roomItem['location']) ?>
+               Diện tích:
+               <span style="color: red;">
+                  <?php echo ($houseItem['area']) ?>
+               </span> 
+            </p>
+            <p class="roomdetail-author">
+               Giá nhà:
+               <span style="color: red;">
+                  <?php echo $houseItem['price']; ?>
+               </span> 
+            </p>
+            <p style="margin-bottom: 15px;" class="roomdetail-author">
+               Mô tả: 
+               <?php echo ($houseItem['description']) ?>
             </p>
                <div class="form_input">
                   <span for="">Phương thức thanh toán: </span>
@@ -186,11 +198,11 @@
                      <option value="Paypal">Paypal</option>
                   </select>
                </div>
-            <input class="borrow-btn" name="submit" type="submit" value="Thuê phòng">
+            <input class="borrow-btn" name="submit" type="submit" value="Đặt mua">
          </div>
       </form>
    <?php else : ?>
-      <p style="font-size: 20px; text-align: center;">Không thuê được phòng này</p>
+      <p style="font-size: 20px; text-align: center;">Không mua được nhà này</p>
    <?php endif; ?>
 
 </section>

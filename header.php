@@ -37,14 +37,14 @@
    <div class="header-2">
       <div style="padding: 10px;" class="flex">
          <a href="home.php" class="logo">
-            <img width="200px" src="./images/logo_room.png" alt="">
+            <img width="150px" src="./images/logo.png" alt="">
          </a>
 
          <nav class="navbar">
             <a href="home.php">Trang chủ</a>
             <a href="about.php">Thông tin</a>
             <a href="contact.php">Liên hệ</a>
-            <a href="list_hired.php">Phòng đã thuê</a>
+            <a href="list_hired.php">Phòng đã đặt mua</a>
          </nav>
 
          <div class="icons">

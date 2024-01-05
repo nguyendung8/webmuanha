@@ -18,7 +18,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Danh sách phòng đã thuê</title>
+   <title>Danh sách nhà đã đặt mua</title>
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
    <link rel="stylesheet" href="css/style.css">
@@ -57,27 +57,28 @@
 
 <section class="placed-orders">
 
-   <h1 class="title">Danh sách phòng đã thuê của bạn</h1>
+   <h1 class="title">Danh sách nhà đã đặt mua của bạn</h1>
 
    <div class="borrow-container">
 
       <?php
-         $order_query = mysqli_query($conn, "SELECT * FROM `pays` WHERE student_id = '$user_id'") or die('query failed');
+         $order_query = mysqli_query($conn, "SELECT * FROM `pays` WHERE user_id = '$user_id'") or die('query failed');
          if(mysqli_num_rows($order_query) > 0){
             while($fetch_pays = mysqli_fetch_assoc($order_query)){
       ?>
       <div class="borrow-box">
-         <p> ID người dùng : <span><?php echo $fetch_pays['student_id']; ?></span> </p>
+         <p> ID người dùng : <span><?php echo $fetch_pays['user_id']; ?></span> </p>
+         <p> ID nhà : <span><?php echo $fetch_pays['house_id']; ?></span> </p>
          <?php
-            $room_id = $fetch_pays['room_id'];
-            $room_query = mysqli_query($conn, "SELECT * FROM `rooms` WHERE id = '$room_id'") or die('query failed');
+            $house_id = $fetch_pays['house_id'];
+            $room_query = mysqli_query($conn, "SELECT * FROM `houses` WHERE id = '$house_id'") or die('query failed');
             $fetch_room = mysqli_fetch_assoc($room_query)
          ?>
          <img width="250px" height="207px" src="uploaded_img/<?php echo $fetch_room['image']; ?>" alt="">
          <p> Địa chỉ : <span><?php echo $fetch_room['location']; ?> </span> </p>
-         <p> Tổng tiền : <span><?php echo number_format($fetch_room['price'],0,',','.' ); ?> đ </span> </p>
+         <p> Tổng tiền : <span><?php echo $fetch_room['price']; ?>  </span> </p>
          <p> Phương thức thanh toán: <span><?php echo $fetch_pays['payment'] ?></span> </p>
-         <p> Ngày thuê phòng:
+         <p> Ngày đặt mua:
             <span>
                <?php
                   $date_object = DateTime::createFromFormat('Y-m-d', $fetch_pays['date']);
@@ -99,7 +100,7 @@
       <?php
        }
       }else{
-         echo '<p class="empty">Chưa có vé nào được đặt!</p>';
+         echo '<p class="empty">Chưa có nhà nào được đặt!</p>';
       }
       ?>
    </div>

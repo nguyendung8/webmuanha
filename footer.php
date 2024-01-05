@@ -11,14 +11,14 @@
       <div class="box">
          <a href="login.php">Đăng nhập</a>
          <a href="register.php">Đăng ký</a>
-         <a href="list_hired.php">Phòng đã thuê</a>
+         <a href="list_hired.php">Phòng đã đặt mua</a>
       </div>
 
       <div class="box">
          <h3>Thông tin liên lạc</h3>
          <p> <i class="fas fa-phone"></i> +84 866017411 </p>
-         <p> <i class="fas fa-envelope"></i> phongtro87@gmail.com </p>
-         <p> <i class="fas fa-map-marker-alt"></i> Hà nội - Việt Nam </p>
+         <p> <i class="fas fa-envelope"></i> bdsquynhquynh@gmail.com </p>
+         <p> <i class="fas fa-map-marker-alt"></i> Tp.Hồ Chí Minh - Việt Nam </p>
       </div>
 
       <div class="box">
@@ -29,6 +29,6 @@
 
    </div>
 
-   <p class="credit"> &copy; Copyright  @ <?php echo date('Y'); ?> by <span> Phongtro87</span> </p>
+   <p class="credit"> &copy; Copyright  @ <?php echo date('Y'); ?> by <span> Như Quỳnh</span> </p>
 
 </section>
